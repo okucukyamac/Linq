@@ -14,13 +14,33 @@ namespace LinqBasics
     {
         static void Main(string[] args)
         {
-
-
+            //OrderBy();
             //OfType();
             //IEnumerable_IQueryable();
             //UsingWhere();
             //Syntaxes();
 
+        }
+
+        private static void OrderBy()
+        {
+            List<Student> students = new List<Student>();
+            students.Add(new Student() { Id = 1, Name = "Ramesh", Rank = 3 });
+            students.Add(new Student() { Id = 2, Name = "Kapil", Rank = 1 });
+            students.Add(new Student() { Id = 3, Name = "Suresh", Rank = 2 });
+
+            var studentOrderByRank = from student in students
+                                     orderby student.Rank descending
+                                     select student;
+
+            var studentOrderByRank2 = students.OrderByDescending(x => x.Rank).ToList();
+
+            foreach (var item in studentOrderByRank)
+            {
+                Console.WriteLine(item.Name);
+            }
+
+            studentOrderByRank2.ForEach(a => Console.WriteLine(a.Name));
         }
 
         private static void OfType()
