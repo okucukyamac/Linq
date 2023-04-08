@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Threading;
+using LinqBasics.Abstract;
 using LinqBasics.Models;
 
 namespace LinqBasics
@@ -14,6 +15,42 @@ namespace LinqBasics
         static void Main(string[] args)
         {
 
+
+            //OfType();
+            //IEnumerable_IQueryable();
+            //UsingWhere();
+            //Syntaxes();
+
+        }
+
+        private static void OfType()
+        {
+            List<AbstractCourse> courses = new List<AbstractCourse>();
+
+            courses.Add(new FreeCourse() { Id = 1, Subject = "Linq Tutorials", Rank = 5 });
+            courses.Add(new FreeCourse() { Id = 2, Subject = ".Net Threading Tutorials", Rank = 4 });
+            courses.Add(new PaidCourse() { Id = 3, Subject = "Learn WPF", Rank = 3 });
+            courses.Add(new PaidCourse() { Id = 4, Subject = "Linq Datagrid Tutorils", Rank = 3 });
+
+            var paidCourses = from course in courses.OfType<PaidCourse>()
+                              select course;
+
+            var freeCourses = from course in courses.OfType<FreeCourse>()
+                              select course;
+
+            foreach (var item in paidCourses)
+            {
+                Console.WriteLine(item.Subject);
+            }
+
+            foreach (var item in freeCourses)
+            {
+                Console.WriteLine(item.Subject);
+            }
+        }
+
+        private static void IEnumerable_IQueryable()
+        {
             List<int> integerList = new()
             {
                 1,2,3,4,5,6,7,8,9,10,11,12,13,14,
@@ -22,7 +59,7 @@ namespace LinqBasics
             //IEnumerable<T>
             //IQueryable
 
-            var querySyntax = from obj in  integerList.AsQueryable()
+            var querySyntax = from obj in integerList.AsQueryable()
                               where obj > 5
                               select obj;
 
@@ -30,11 +67,6 @@ namespace LinqBasics
             {
                 Console.WriteLine(item);
             }
-
-            //UsingWhere();
-
-            //Syntaxes();
-
         }
 
         private static void UsingWhere()
