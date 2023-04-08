@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
@@ -11,6 +12,32 @@ namespace LinqBasics
     internal class Program
     {
         static void Main(string[] args)
+        {
+
+            List<int> integerList = new()
+            {
+                1,2,3,4,5,6,7,8,9,10,11,12,13,14,
+            };
+
+            //IEnumerable<T>
+            //IQueryable
+
+            var querySyntax = from obj in  integerList.AsQueryable()
+                              where obj > 5
+                              select obj;
+
+            foreach (var item in querySyntax)
+            {
+                Console.WriteLine(item);
+            }
+
+            //UsingWhere();
+
+            //Syntaxes();
+
+        }
+
+        private static void UsingWhere()
         {
             List<Course> courses = new List<Course>();
 
@@ -28,14 +55,11 @@ namespace LinqBasics
             {
                 Console.WriteLine(item.Subject);
             }
-            
+
             foreach (var item in result2)
             {
                 Console.WriteLine(item.Subject);
             }
-
-            //Syntaxes();
-
         }
 
         private static void Syntaxes()
