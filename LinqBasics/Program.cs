@@ -14,8 +14,12 @@ namespace LinqBasics
     {
         static void Main(string[] args)
         {
-            EqualsContainsEndWithStartWith();
 
+
+
+
+            //SelectMany();
+            //EqualsContainsEndWithStartWith();
             //Any();
             //All();
             //Distinct();
@@ -27,6 +31,32 @@ namespace LinqBasics
             //IEnumerable_IQueryable();
             //UsingWhere();
             //Syntaxes();
+        }
+
+        private static void SelectMany()
+        {
+            var employees = new List<Employee>(){
+                new Employee { Id = 1, Departments = new List<Department> { new Department { Name = "marketing" }, new Department { Name = "Sales" } } },
+                new Employee { Id = 2, Departments = new List<Department> { new Department { Name = "Advertisement" }, new Department { Name = "Production" } } },
+                new Employee { Id = 3, Departments = new List<Department> { new Department { Name = "Production" }, new Department { Name = "Sales" } } }
+            };
+
+            var result = employees.SelectMany(a => a.Departments);
+
+            foreach (var item in result)
+            {
+                Console.WriteLine(item.Name);
+            }
+
+            Console.WriteLine("");
+
+            foreach (var item in employees)
+            {
+                foreach (var it in item.Departments)
+                {
+                    Console.WriteLine(it.Name);
+                }
+            }
         }
 
         private static void EqualsContainsEndWithStartWith()
