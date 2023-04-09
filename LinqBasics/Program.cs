@@ -15,7 +15,15 @@ namespace LinqBasics
         static void Main(string[] args)
         {
 
-            //ExceptUnion();
+
+
+
+
+
+
+
+            //Distinct();
+            //ExceptUnionConcatIntersect();
             //Reverse();
             //ThenBy();
             //OrderBy();
@@ -25,7 +33,24 @@ namespace LinqBasics
             //Syntaxes();
         }
 
-        private static void ExceptUnion()
+        private static void Distinct()
+        {
+            List<Student> students = new List<Student>();
+            students.Add(new Student() { Id = 1, Name = "Ramesh", Rank = 1, Age = 39 });
+            students.Add(new Student() { Id = 2, Name = "Kapil", Rank = 1, Age = 32 });
+            students.Add(new Student() { Id = 3, Name = "Suresh", Rank = 2, Age = 45 });
+            students.Add(new Student() { Id = 3, Name = "Mahesh", Rank = 2, Age = 39 });
+
+            var distinct = (from s in students
+                            select s.Name).Distinct().ToList();
+
+            foreach (var item in distinct)
+            {
+                Console.WriteLine(item);
+            }
+        }
+
+        private static void ExceptUnionConcatIntersect()
         {
             List<string> can = new List<string>() { "Fatih", "Erhan", "Oğuz", "Enes" };
             List<string> boz = new List<string>() { "Fatih", "Erhan", "Apul", "Ali" };
@@ -34,10 +59,23 @@ namespace LinqBasics
             var fark1 = boz.Except(can);
 
             var toplam = can.Union(boz);// iki diziyi birleştirir. kesişim değerlerini bir kere yazar.
+            var toplam1 = can.Concat(boz);// iki diziyi birleştirir. kesişim değerlerini kaç tane varsa hepsini yazar.
+
+            var kesisim = can.Intersect(boz); // iki dizinin kesişim kümesini alır.
+
+            foreach (var item in kesisim)
+            {
+                Console.WriteLine(item + "+");
+            }
 
             foreach (var item in toplam)
             {
                 Console.WriteLine(item);
+            }
+
+            foreach (var item in toplam1)
+            {
+                Console.WriteLine(item + "-");
             }
 
             foreach (var item in fark)
