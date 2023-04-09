@@ -10,8 +10,16 @@ namespace LinqBasics.Models
     {
 
         public int Id { get; set; }
+        public string Name { get; set; }
+        public int AddressId { get; set; }
         public List<Department> Departments { get; set; }
 
+    }
+
+    public class Address
+    {
+        public int Id { get; set; }
+        public string AddressLine { get; set; }
     }
 
     class Department
