@@ -8,6 +8,150 @@ namespace LinqBasics
 {
     internal class Methods
     {
+        public static void SequenceEqual()
+        {
+            var sehirler = new List<string> { "İstanbul", "İzmir", "Ankara" };
+
+            var sehirler2 = new List<string> { "İstanbul", "İzmiR", "Ankara" };
+
+            var sehirler3 = new List<string> { "İstanbul", "Ankara", "İzmiR", };
+
+            var result = sehirler.SequenceEqual(sehirler2);
+            Console.WriteLine(result);
+
+            result = sehirler.SequenceEqual(sehirler2,StringComparer.OrdinalIgnoreCase);
+            Console.WriteLine(result);
+
+            result = sehirler.OrderBy(a=>a).SequenceEqual(sehirler3.OrderBy(a=>a),StringComparer.OrdinalIgnoreCase);
+            Console.WriteLine(result);
+        }
+
+
+
+
+        public static void DefaultIfEmpty()
+        {
+            List<int> numbers = new List<int> { };
+
+            var result = numbers.DefaultIfEmpty(8);
+            foreach (var item in result)
+            {
+                Console.WriteLine(item);
+            }
+        }
+
+        public static void SingleOrDefault()
+        {
+            List<int> numbers = new List<int>() { 10, 11 };
+
+            var result = numbers.SingleOrDefault(a => a > 40);
+
+            Console.WriteLine(result);
+
+            result = numbers.Single(a => a > 40);
+
+        }
+
+        public static void LastOrDefault()
+        {
+            List<int> numbers = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+
+
+            var lastOrDefault = numbers.LastOrDefault(a => a % 2 == 0);
+            Console.WriteLine(lastOrDefault);
+            lastOrDefault = numbers.LastOrDefault(a => a > 50);
+            Console.WriteLine(lastOrDefault);
+
+            var last = numbers.Last(a => a % 2 == 0);
+            Console.WriteLine(last);
+            last = numbers.Last(a => a > 50);
+
+            var queryLast = (from a in numbers
+                             select a).LastOrDefault();
+        }
+
+        public static void FirstOrDefault()
+        {
+            List<int> numbers = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+
+
+            var firstOrDefault = numbers.FirstOrDefault(a => a % 2 == 0);
+            Console.WriteLine(firstOrDefault);
+            firstOrDefault = numbers.FirstOrDefault(a => a > 50);
+            Console.WriteLine(firstOrDefault);
+
+            var first = numbers.First(a => a % 2 == 0);
+            Console.WriteLine(first);
+            first = numbers.First(a => a > 50);
+        }
+
+        public static void ElementAtOrDefault()
+        {
+            List<int> numbers = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+
+            var elementAtOrDefault = numbers.ElementAtOrDefault(10);
+
+            Console.WriteLine(elementAtOrDefault);
+
+            var elementAt = numbers.ElementAt(10);//hata verecektir.
+
+            Console.WriteLine(elementAt);
+        }
+
+        public static void MultipleDataSource()
+        {
+            List<Employee> employees = new List<Employee>()
+            {
+                new Employee() {Id= 1,Name="Fatih",AddressId=1,DepartmentId=10} ,
+                new Employee() {Id= 2,Name="Erhan",AddressId=2,DepartmentId=20} ,
+                new Employee() {Id= 3,Name="Şafak",AddressId=3,DepartmentId=30} ,
+                new Employee() {Id= 4,Name="Oğuz",AddressId=4,DepartmentId=0} ,
+                new Employee() {Id= 5,Name="Yağır",AddressId=5,DepartmentId=0} ,
+                new Employee() {Id= 6,Name="Murat",AddressId=6,DepartmentId=0} ,
+                new Employee() {Id= 7,Name="Bahri",AddressId=7,DepartmentId=0} ,
+                new Employee() {Id= 8,Name="Nedim",AddressId=8,DepartmentId=0} ,
+                new Employee() {Id= 9,Name="Osman",AddressId=9,DepartmentId=10} ,
+                new Employee() {Id= 10,Name="Ali",AddressId=10,DepartmentId=20} ,
+                new Employee() {Id= 11,Name="Ömer",AddressId=11,DepartmentId=30}
+            };
+
+            List<Address> addresses = new List<Address>()
+            {
+                new Address() {Id= 1,AddressLine="AddressLine1"},
+                new Address() {Id= 2,AddressLine="AddressLine2"},
+                new Address() {Id= 3,AddressLine="AddressLine3"},
+                new Address() {Id= 4,AddressLine="AddressLine4"},
+                new Address() {Id= 5,AddressLine="AddressLine5"},
+                new Address() {Id= 9,AddressLine="AddressLine9"},
+                new Address() {Id= 10,AddressLine="AddressLine10"},
+                new Address() {Id= 11,AddressLine="AddressLine11"}
+            };
+
+            List<Department> departments = new List<Department>()
+            {
+                new Department{Id=10,Name="IT"},
+                new Department{Id=20,Name="HR"},
+                new Department{Id=30,Name="Payroll"}
+            };
+
+            var result = from emp in employees
+                         join add in addresses on emp.AddressId equals add.Id
+                         join dep in departments on emp.DepartmentId equals dep.Id
+                         select new
+                         {
+                             EmpId = emp.Id,
+                             EmpName = emp.Name,
+                             add.AddressLine,
+                             DemartmantName = dep.Name
+
+                         };
+
+            foreach (var item in result)
+            {
+                Console.WriteLine($"{item.EmpId} - {item.EmpName} - {item.AddressLine} - {item.DemartmantName}");
+            }
+        }
+
         public static void JoinInnerJoin()
         {
             List<Employee> employees = new List<Employee>()
@@ -257,7 +401,7 @@ namespace LinqBasics
                 Console.WriteLine(item);
             }
         }
- 
+
 
         public static void OfType()
         {
