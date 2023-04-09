@@ -14,8 +14,7 @@ namespace LinqBasics
     {
         static void Main(string[] args)
         {
-
-
+            EqualsContainsEndWithStartWith();
 
             //Any();
             //All();
@@ -30,10 +29,53 @@ namespace LinqBasics
             //Syntaxes();
         }
 
+        private static void EqualsContainsEndWithStartWith()
+        {
+            List<Student> students = new List<Student>();
+
+            students.Add(new Student() { Id = 1, Name = "Ramesh", Rank = 1, Age = 39, IsFeesSubmitted = true });
+            students.Add(new Student() { Id = 2, Name = "Kapil", Rank = 1, Age = 32, IsFeesSubmitted = true });
+            students.Add(new Student() { Id = 3, Name = "Suresh", Rank = 2, Age = 45, IsFeesSubmitted = true });
+            students.Add(new Student() { Id = 3, Name = "Mahesh", Rank = 2, Age = 39, IsFeesSubmitted = true });
+
+            var equals = students.Where(a => a.Name.Equals("Ramesh"));//aynısını getir
+            var contains = students.Where(a => a.Name.Contains("esh"));//içerenleri getir
+            var endWith = students.Where(a => a.Name.EndsWith("esh"));//bitenleri getir
+            var startWith = students.Where(a => a.Name.StartsWith("Ka"));//başlayanları getir
+
+            foreach (var student in equals)
+                Console.WriteLine(student.Name);
+            Console.WriteLine("");
+            foreach (var student in contains)
+                Console.WriteLine(student.Name);
+            Console.WriteLine("");
+
+            foreach (var student in endWith)
+                Console.WriteLine(student.Name);
+            Console.WriteLine("");
+
+            foreach (var student in startWith)
+                Console.WriteLine(student.Name);
+            Console.WriteLine("");
+        }
+
         private static void Any()
         {
             List<Student> students = new List<Student>();
+
+            if (students.Any())
+                Console.WriteLine("eleman var");
+            else
+                Console.WriteLine("eleman yok");
+
             students.Add(new Student() { Id = 1, Name = "Ramesh", Rank = 1, Age = 39, IsFeesSubmitted = true });
+
+            if (students.Any())
+                Console.WriteLine("eleman var");
+            else
+                Console.WriteLine("eleman yok");
+
+
             students.Add(new Student() { Id = 2, Name = "Kapil", Rank = 1, Age = 32, IsFeesSubmitted = true });
             students.Add(new Student() { Id = 3, Name = "Suresh", Rank = 2, Age = 45, IsFeesSubmitted = true });
             students.Add(new Student() { Id = 3, Name = "Mahesh", Rank = 2, Age = 39, IsFeesSubmitted = true });
