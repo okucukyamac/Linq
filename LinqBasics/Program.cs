@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Threading;
@@ -17,7 +18,8 @@ namespace LinqBasics
 
 
 
-
+            GroupBy();
+            //SumMaxMinAverageCountAggregate();
             //SelectMany();
             //EqualsContainsEndWithStartWith();
             //Any();
@@ -31,6 +33,93 @@ namespace LinqBasics
             //IEnumerable_IQueryable();
             //UsingWhere();
             //Syntaxes();
+        }
+
+        private static void GroupBy()
+        {
+            var students = new List<Student>
+            {
+                new Student() {Id= 1,Name="Fatih",Gender="Erkek",Branch="CSE",Age=20},
+                new Student() {Id= 1,Name="Derya",Gender="Kadın",Branch="ETC",Age=21},
+                new Student() {Id= 1,Name="Ali",Gender="Erkek",Branch="CSE",Age=22},
+                new Student() {Id= 1,Name="Muhammed",Gender="Erkek",Branch="CSE",Age=23},
+                new Student() {Id= 1,Name="Zeynep",Gender="Kadın",Branch="ETC",Age=24},
+                new Student() {Id= 1,Name="Tarık",Gender="Erkek",Branch="CSE",Age=25},
+                new Student() {Id= 1,Name="Derya",Gender="Kadın",Branch="ETC",Age=26},
+                new Student() {Id= 1,Name="Emre",Gender="Erkek",Branch="ETC",Age=26},
+            };
+
+            var groupBy = students.GroupBy(x => x.Branch).Where(a=>a.Key=="ETC");
+
+            foreach (var item in groupBy)
+            {
+                Console.WriteLine(item.Key + " " + item.Count());
+                foreach (var x in item)
+                {
+                    Console.WriteLine(x.Name);
+                }
+
+                Console.WriteLine("");
+            }
+
+            var groupBy1 = from s in students
+                           group s by s.Gender;
+
+            foreach (var item in groupBy1)
+            {
+                Console.WriteLine(item.Key + " " + item.Count());
+                foreach (var x in item)
+                {
+                    Console.WriteLine(x.Name);
+                }
+
+                Console.WriteLine("");
+            }
+        }
+
+        private static void SumMaxMinAverageCountAggregate()
+        {
+            var intList = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+
+            int total = intList.Sum();
+            Console.WriteLine(total);
+            total = (from a in intList select a).Sum();
+            Console.WriteLine(total);
+
+            Console.WriteLine("");
+
+            var max = intList.Max();
+            Console.WriteLine(max);
+            max = (from a in intList select a).Max();
+            Console.WriteLine(max);
+
+            Console.WriteLine("");
+
+            var min = intList.Min();
+            Console.WriteLine(min);
+            min = (from a in intList select a).Min();
+            Console.WriteLine(min);
+
+            Console.WriteLine("");
+
+            var Average = intList.Average();
+            Console.WriteLine(Average);
+            Average = (from a in intList select a).Average();
+            Console.WriteLine(Average);
+
+            Console.WriteLine("");
+
+            var count = intList.Count();
+            Console.WriteLine(count);
+            count = (from a in intList select a).Count();
+            Console.WriteLine(count);
+
+            Console.WriteLine("");
+
+            var stringList = new List<string> { "C#", "Java", "Php", "Sql" };
+
+            var aggragate = stringList.Aggregate((x, y) => x + ", " + y);
+            Console.WriteLine(aggragate);
         }
 
         private static void SelectMany()
