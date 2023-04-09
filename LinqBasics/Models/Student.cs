@@ -12,5 +12,6 @@ namespace LinqBasics.Models
         public string Name { get; set; }
         public int Rank { get; set; }
         public int Age { get; set; }
+        public bool IsFeesSubmitted { get; set; }
     }
 }

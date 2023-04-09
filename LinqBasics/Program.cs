@@ -17,11 +17,8 @@ namespace LinqBasics
 
 
 
-
-
-
-
-
+            //Any();
+            //All();
             //Distinct();
             //ExceptUnionConcatIntersect();
             //Reverse();
@@ -31,6 +28,36 @@ namespace LinqBasics
             //IEnumerable_IQueryable();
             //UsingWhere();
             //Syntaxes();
+        }
+
+        private static void Any()
+        {
+            List<Student> students = new List<Student>();
+            students.Add(new Student() { Id = 1, Name = "Ramesh", Rank = 1, Age = 39, IsFeesSubmitted = true });
+            students.Add(new Student() { Id = 2, Name = "Kapil", Rank = 1, Age = 32, IsFeesSubmitted = true });
+            students.Add(new Student() { Id = 3, Name = "Suresh", Rank = 2, Age = 45, IsFeesSubmitted = true });
+            students.Add(new Student() { Id = 3, Name = "Mahesh", Rank = 2, Age = 39, IsFeesSubmitted = true });
+
+            var any = students.Any(a => a.Age > 35);
+            var any1 = students.Any(a => a.Age > 50);
+
+            Console.WriteLine(any);
+            Console.WriteLine(any1);
+        }
+
+        private static void All()
+        {
+            List<Student> students = new List<Student>();
+            students.Add(new Student() { Id = 1, Name = "Ramesh", Rank = 1, Age = 39, IsFeesSubmitted = true });
+            students.Add(new Student() { Id = 2, Name = "Kapil", Rank = 1, Age = 32, IsFeesSubmitted = true });
+            students.Add(new Student() { Id = 3, Name = "Suresh", Rank = 2, Age = 45, IsFeesSubmitted = true });
+            students.Add(new Student() { Id = 3, Name = "Mahesh", Rank = 2, Age = 39, IsFeesSubmitted = true });
+
+            var distinct = students.All(a => a.Age > 35);
+            var distinct1 = students.All(a => a.Age > 30);
+
+            Console.WriteLine(distinct);
+            Console.WriteLine(distinct1);
         }
 
         private static void Distinct()
