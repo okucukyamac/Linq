@@ -8,6 +8,43 @@ namespace LinqBasics
 {
     internal class Methods
     {
+
+
+        public static void Skip()
+        {
+            List<int> numbers = new List<int>() { 1,2,3,4,5,6,7,8,9,10};
+
+            var result = numbers.Skip(4);
+
+            foreach (var item in result)
+            {
+                Console.WriteLine(item);
+            }
+
+        }
+        
+        public static void Take()
+        {
+            List<int> numbers = new List<int>() { 1,2,3,4,5,6,7,8,9,10};
+
+            var result = numbers.OrderByDescending(a=>a).Take(4);
+
+            foreach (var item in result)
+            {
+                Console.WriteLine(item);
+            }
+            Console.WriteLine("");
+            result = (from num in numbers
+                     orderby num
+                     select num).Take(4).Where(a=>a%2==0);
+
+            foreach (var item in result)
+            {
+                Console.WriteLine(item);
+            }
+
+        }
+
         public static void SequenceEqual()
         {
             var sehirler = new List<string> { "İstanbul", "İzmir", "Ankara" };
@@ -25,9 +62,6 @@ namespace LinqBasics
             result = sehirler.OrderBy(a=>a).SequenceEqual(sehirler3.OrderBy(a=>a),StringComparer.OrdinalIgnoreCase);
             Console.WriteLine(result);
         }
-
-
-
 
         public static void DefaultIfEmpty()
         {

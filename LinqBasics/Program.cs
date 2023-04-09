@@ -14,7 +14,9 @@ namespace LinqBasics
     {
         static void Main(string[] args)
         {
-            Methods.SequenceEqual();
+            Methods.Skip();
+            //Methods.Take();
+            //Methods.SequenceEqual();
             //Methods.DefaultIfEmpty();
             //Methods.SingleOrDefault();
             //Methods.LastOrDefault();
