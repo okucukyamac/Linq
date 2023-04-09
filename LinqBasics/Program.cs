@@ -15,15 +15,59 @@ namespace LinqBasics
         static void Main(string[] args)
         {
 
-
-
-
+            //ExceptUnion();
+            //Reverse();
             //ThenBy();
             //OrderBy();
             //OfType();
             //IEnumerable_IQueryable();
             //UsingWhere();
             //Syntaxes();
+        }
+
+        private static void ExceptUnion()
+        {
+            List<string> can = new List<string>() { "Fatih", "Erhan", "Oğuz", "Enes" };
+            List<string> boz = new List<string>() { "Fatih", "Erhan", "Apul", "Ali" };
+
+            var fark = can.Except(boz);
+            var fark1 = boz.Except(can);
+
+            var toplam = can.Union(boz);// iki diziyi birleştirir. kesişim değerlerini bir kere yazar.
+
+            foreach (var item in toplam)
+            {
+                Console.WriteLine(item);
+            }
+
+            foreach (var item in fark)
+            {
+                Console.WriteLine(item);
+            }
+
+            foreach (var item in fark1)
+            {
+                Console.WriteLine(item);
+            }
+        }
+
+        private static void Reverse()
+        {
+            List<int> intList = new() { 10, 20, 30, 40, 50, 60, 70, 80, 90, 100 };
+
+            foreach (var item in intList)
+            {
+                Console.WriteLine(item);
+            }
+
+            intList.Reverse();
+
+            var reverseList = intList;
+
+            foreach (var item in reverseList)
+            {
+                Console.WriteLine(item);
+            }
         }
 
         private static void ThenBy()
