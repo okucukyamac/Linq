@@ -14,7 +14,11 @@ namespace LinqBasics
     {
         static void Main(string[] args)
         {
-            Methods.Skip();
+
+            Methods.SkipWhile();
+
+
+            //Methods.Skip();
             //Methods.Take();
             //Methods.SequenceEqual();
             //Methods.DefaultIfEmpty();

@@ -10,6 +10,19 @@ namespace LinqBasics
     {
 
 
+        public static void SkipWhile()
+        {
+            List<int> numbers = new List<int>() { 1,4,5,6,7,8,9,10, 2, 3 };
+
+            var result = numbers.SkipWhile(a=>a<6);
+
+            foreach (var item in result)
+            {
+                Console.WriteLine(item);
+            }
+
+        }
+
         public static void Skip()
         {
             List<int> numbers = new List<int>() { 1,2,3,4,5,6,7,8,9,10};
