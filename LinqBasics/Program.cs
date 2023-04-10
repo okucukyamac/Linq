@@ -15,10 +15,9 @@ namespace LinqBasics
         static void Main(string[] args)
         {
 
-            Methods.Range();
+            Methods.Zip();
+            //Methods.Range();
             //Methods.SkipWhile();
-
-
             //Methods.Skip();
             //Methods.Take();
             //Methods.SequenceEqual();

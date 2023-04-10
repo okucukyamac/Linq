@@ -8,6 +8,29 @@ namespace LinqBasics
 {
     internal class Methods
     {
+        public static void Zip()
+        {
+
+            List<int> numbers = new List<int>() { 10, 20, 30, 40, 50 };
+
+            List<string> strings = new List<string>() { "on", "yirmi", "otuz", "kırk", "elli" };
+
+            var result = numbers.Zip(strings);
+
+            foreach (var item in result)
+            {
+                Console.WriteLine(item);
+            }
+
+            var result1 = numbers.Zip(strings, (a, b) => a + " - " + b);
+
+            foreach (var item in result1)
+            {
+                Console.WriteLine(item);
+            }
+
+        }
+
         public static void Range()
         {
 
@@ -20,7 +43,7 @@ namespace LinqBasics
 
             Console.WriteLine("");
 
-            numbers = Enumerable.Range(10, 30).Where(a=>a%2==0);
+            numbers = Enumerable.Range(10, 30).Where(a => a % 2 == 0);
 
             foreach (var item in numbers)
             {
@@ -30,22 +53,22 @@ namespace LinqBasics
             Console.WriteLine("");
 
 
-            numbers = Enumerable.Range(1,5).Select(a=>a*a);
+            numbers = Enumerable.Range(1, 5).Select(a => a * a);
 
             foreach (var item in numbers)
             {
                 Console.WriteLine(item);
             }
 
-          
+
 
         }
 
         public static void SkipWhile()
         {
-            List<int> numbers = new List<int>() { 1,4,5,6,7,8,9,10, 2, 3 };
+            List<int> numbers = new List<int>() { 1, 4, 5, 6, 7, 8, 9, 10, 2, 3 };
 
-            var result = numbers.SkipWhile(a=>a<6);
+            var result = numbers.SkipWhile(a => a < 6);
 
             foreach (var item in result)
             {
@@ -56,7 +79,7 @@ namespace LinqBasics
 
         public static void Skip()
         {
-            List<int> numbers = new List<int>() { 1,2,3,4,5,6,7,8,9,10};
+            List<int> numbers = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 
             var result = numbers.Skip(4);
 
@@ -66,12 +89,12 @@ namespace LinqBasics
             }
 
         }
-        
+
         public static void Take()
         {
-            List<int> numbers = new List<int>() { 1,2,3,4,5,6,7,8,9,10};
+            List<int> numbers = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
 
-            var result = numbers.OrderByDescending(a=>a).Take(4);
+            var result = numbers.OrderByDescending(a => a).Take(4);
 
             foreach (var item in result)
             {
@@ -79,8 +102,8 @@ namespace LinqBasics
             }
             Console.WriteLine("");
             result = (from num in numbers
-                     orderby num
-                     select num).Take(4).Where(a=>a%2==0);
+                      orderby num
+                      select num).Take(4).Where(a => a % 2 == 0);
 
             foreach (var item in result)
             {
@@ -100,10 +123,10 @@ namespace LinqBasics
             var result = sehirler.SequenceEqual(sehirler2);
             Console.WriteLine(result);
 
-            result = sehirler.SequenceEqual(sehirler2,StringComparer.OrdinalIgnoreCase);
+            result = sehirler.SequenceEqual(sehirler2, StringComparer.OrdinalIgnoreCase);
             Console.WriteLine(result);
 
-            result = sehirler.OrderBy(a=>a).SequenceEqual(sehirler3.OrderBy(a=>a),StringComparer.OrdinalIgnoreCase);
+            result = sehirler.OrderBy(a => a).SequenceEqual(sehirler3.OrderBy(a => a), StringComparer.OrdinalIgnoreCase);
             Console.WriteLine(result);
         }
 
