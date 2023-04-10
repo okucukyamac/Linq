@@ -1,6 +1,7 @@
 ﻿using LinqBasics.Abstract;
 using LinqBasics.Models;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -8,6 +9,22 @@ namespace LinqBasics
 {
     internal class Methods
     {
+        public static void Cast()
+        {
+
+            ArrayList ints= new ArrayList { 10,20,30};
+
+            IEnumerable<int> ints2 =  ints.Cast<int>();
+
+            foreach (int i in ints2)
+            {
+                Console.WriteLine(i);
+            }
+
+        }
+
+
+
         public static void Dictionary()
         {
             List<Product> products = new List<Product>()
