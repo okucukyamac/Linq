@@ -15,7 +15,8 @@ namespace LinqBasics
         static void Main(string[] args)
         {
 
-            Methods.Zip();
+            Methods.Dictionary();
+            //Methods.Zip();
             //Methods.Range();
             //Methods.SkipWhile();
             //Methods.Skip();

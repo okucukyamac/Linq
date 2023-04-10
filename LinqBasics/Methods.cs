@@ -8,6 +8,24 @@ namespace LinqBasics
 {
     internal class Methods
     {
+        public static void Dictionary()
+        {
+            List<Product> products = new List<Product>()
+            {
+                new Product(){Id=1,Name="Mobile",Price=800},
+                new Product(){Id=2,Name="Laptop",Price=900},
+                new Product(){Id=3,Name="Desktop",Price=800}
+            };
+
+            Dictionary<int, Product> productsDictionary = products.ToDictionary(x => x.Id);
+
+            foreach (var item in productsDictionary)
+            {
+                Console.WriteLine(item.Key + " - " + item.Value.Name + " - " + item.Value.Price);
+            }
+
+        }
+
         public static void Zip()
         {
 
