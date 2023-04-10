@@ -8,7 +8,38 @@ namespace LinqBasics
 {
     internal class Methods
     {
+        public static void Range()
+        {
 
+            IEnumerable<int> numbers = Enumerable.Range(0, 10);
+
+            foreach (int i in numbers)
+            {
+                Console.WriteLine(i);
+            }
+
+            Console.WriteLine("");
+
+            numbers = Enumerable.Range(10, 30).Where(a=>a%2==0);
+
+            foreach (var item in numbers)
+            {
+                Console.WriteLine(item);
+            }
+
+            Console.WriteLine("");
+
+
+            numbers = Enumerable.Range(1,5).Select(a=>a*a);
+
+            foreach (var item in numbers)
+            {
+                Console.WriteLine(item);
+            }
+
+          
+
+        }
 
         public static void SkipWhile()
         {

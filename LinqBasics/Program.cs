@@ -15,7 +15,8 @@ namespace LinqBasics
         static void Main(string[] args)
         {
 
-            Methods.SkipWhile();
+            Methods.Range();
+            //Methods.SkipWhile();
 
 
             //Methods.Skip();
